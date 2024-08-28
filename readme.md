@@ -1,37 +1,41 @@
 # ABST Template Project
 
-This project is a template for building web applications using the ABST stack:
+Welcome to the **ABST Template Project**, a robust and scalable starting point for building web applications using the ABST stack:
 
-- **Actix**: A powerful, pragmatic, and extremely fast web framework for Rust.
-- **Bun**: A fast all-in-one JavaScript runtime.
-- **SolidJS**: A declarative JavaScript library for building user interfaces.
-- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **[Actix](https://actix.rs/)**: A powerful, pragmatic, and extremely fast web framework for Rust.
+- **[Bun](https://bun.sh/)**: A fast, all-in-one JavaScript runtime.
+- **[SolidJS](https://www.solidjs.com/)**: A declarative JavaScript library for building efficient and reactive user interfaces.
+- **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for rapid UI development.
 
 ## Features
 
-- **Actix**: Backend server handling requests and responses.
-- **Bun**: Fast JavaScript runtime for server-side logic.
-- **SolidJS**: Frontend framework for building reactive user interfaces.
-- **Tailwind CSS**: Styling framework for creating modern and responsive designs.
+- **Actix**: Handles backend server logic, managing requests and responses efficiently.
+- **Bun**: Provides a fast JavaScript runtime for executing server-side logic.
+- **SolidJS**: Enables reactive and dynamic UI development for a seamless user experience.
+- **Tailwind CSS**: Allows for rapid creation of modern, responsive designs using utility-first principles.
 
 ## Prerequisites
 
-- **Node.js**: Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
-- **Rust**: Ensure you have Rust installed. You can download it from [rust-lang.org](https://www.rust-lang.org/).
-- **Bun**: Ensure you have Bun installed. You can download it from [bun.sh](https://bun.sh/).
+To get started, ensure the following are installed on your machine:
+
+- **Node.js**: Required for client-side development. Download from [nodejs.org](https://nodejs.org/).
+- **Rust**: Required for backend development with Actix. Download from [rust-lang.org](https://www.rust-lang.org/).
+- **Bun**: The JavaScript runtime needed for server-side development. Download from [bun.sh](https://bun.sh/).
 
 ## Getting Started
 
 ### Clone the Repository
 
+Clone the repository to your local machine:
+
 ```sh
-git clonehttps://github.com/HollowNumber/Solidjs-Template
+git clone https://github.com/SEM-Development/Solidjs-Template
 cd Solidjs-Template
 ```
 
-## Install Dependencies
+### Install Dependencies
 
-### Client
+#### Client
 
 Navigate to the `client` directory and install the dependencies:
 
@@ -40,20 +44,21 @@ cd client
 bun install
 ```
 
-### Sever
+#### Server
 
-Navigate to the `server` directory and install the dependencies
+Navigate to the `server` directory and build the server:
+
 ```sh
-cd ../sever
+cd ../server
 cargo run
 ```
 
 ### Start the Client
-In the `client` directory, run the following command to start the SolidJS development server:
+
+In the `client` directory, start the SolidJS development server:
 
 ```sh
 bun run dev
 ```
 
-The client will start on `http://localhost:3000`
-
+The client will start on [http://localhost:3000](http://localhost:3000).
