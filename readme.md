@@ -45,7 +45,7 @@ bun install
 Navigate to the `server` directory and install the dependencies
 ```sh
 cd ../sever
-cargo build
+cargo run
 ```
 
 ### Start the Client
