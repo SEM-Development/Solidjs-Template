@@ -1,8 +1,8 @@
 {
   "name": "abst-template",
   "author": {
-    "name": "Mikkel M.H. Pedersen",
-    "email": "mikkel@sem-development.com"
+    "name": "SEM-Development I/S",
+    "email": "hello@sem-development.com"
   },
   "type": "module",
   "scripts": {
