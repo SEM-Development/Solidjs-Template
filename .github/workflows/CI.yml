@@ -58,15 +58,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      uses: actions/checkout@v4
 
     - name: Set up Bun
       uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
 
     - name: Cache Bun dependencies
       uses: actions/cache@v3
@@ -79,11 +76,15 @@ jobs:
     - name: Install dependencies
       run: |
         cd client
-        source ~/.bashrc
         bun install
+      env:
+        BUN_INSTALL: ${{ env.HOME }}/.bun
+        PATH: ${{ env.HOME }}/.bun/bin:${{ env.PATH }}
 
     - name: Run tests
       run: |
         cd client
-        source ~/.bashrc
         bun test
+      env:
+        BUN_INSTALL: ${{ env.HOME }}/.bun
+        PATH: ${{ env.HOME }}/.bun/bin:${{ env.PATH }}
