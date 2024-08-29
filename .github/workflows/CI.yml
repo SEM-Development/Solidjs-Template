@@ -58,12 +58,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: Set up Bun
       uses: oven-sh/setup-bun@v2
-      with:
-        bun-version: latest
 
     - name: Cache Bun dependencies
       uses: actions/cache@v3
@@ -77,14 +75,8 @@ jobs:
       run: |
         cd client
         bun install
-      env:
-        BUN_INSTALL: ${{ env.HOME }}/.bun
-        PATH: ${{ env.HOME }}/.bun/bin:${{ env.PATH }}
 
     - name: Run tests
       run: |
         cd client
         bun test
-      env:
-        BUN_INSTALL: ${{ env.HOME }}/.bun
-        PATH: ${{ env.HOME }}/.bun/bin:${{ env.PATH }}
