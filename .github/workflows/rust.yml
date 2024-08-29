@@ -1,4 +1,4 @@
-name: Rust
+name: CI
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  rust-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,13 +42,50 @@ jobs:
     - name: Cache cargo build
       uses: actions/cache@v3
       with:
-        path: target
+        path: server/target
         key: ${{ runner.os }}-cargo-build-${{ hashFiles('**/Cargo.lock') }}
         restore-keys: |
           ${{ runner.os }}-cargo-build-
 
-    - name: Build
-      run: cargo build --verbose
+    - name: Build and Test
+      run: |
+        cd server
+        cargo build --verbose
+        cargo test --verbose
+
+  bun-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Bun
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+        echo 'export BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
+        echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
+        source $GITHUB_ENV
+
+    - name: Cache Bun dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.bun
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/client/bun.lockb') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
+    - name: Install dependencies
+      run: |
+        cd client
+        bun install
 
     - name: Run tests
-      run: cargo test --verbose
+      run: |
+        cd client
+        bun test
