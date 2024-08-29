@@ -79,9 +79,11 @@ jobs:
     - name: Install dependencies
       run: |
         cd client
+        source ~/.bashrc
         bun install
 
     - name: Run tests
       run: |
         cd client
+        source ~/.bashrc
         bun test
