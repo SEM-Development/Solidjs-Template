@@ -1,8 +1,14 @@
 {
-  "name": "example-with-tailwindcss",
+  "name": "abst-template",
+  "author": {
+    "name": "SEM-Development I/S",
+    "email": "hello@sem-development.com"
+  },
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
+    "dev": "concurrently -k -n dev:client,dev:server -c cyan,green \"bun run dev:client\" \"bun run dev:server\"",
+    "dev:client": "vinxi dev",
+    "dev:server": "cd ../server && cargo run --release",
     "build": "vinxi build",
     "start": "vinxi start"
   },
@@ -17,5 +23,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

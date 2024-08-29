@@ -40,3 +40,40 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use actix_web::{test, App};
+
+    #[actix_web::test]
+    async fn test_hello() {
+        let mut app = test::init_service(App::new().service(hello)).await;
+        let req = test::TestRequest::get().uri("/").to_request();
+        let resp = test::call_service(&mut app, req).await;
+        assert!(resp.status().is_success());
+        let body = test::read_body(resp).await;
+        assert_eq!(body, "Hello world!");
+    }
+
+    #[actix_web::test]
+    async fn test_hello_name() {
+        let mut app = test::init_service(App::new().service(hello_name)).await;
+        let req = test::TestRequest::get().uri("/hello/Alice").to_request();
+        let resp = test::call_service(&mut app, req).await;
+        assert!(resp.status().is_success());
+        let body = test::read_body(resp).await;
+        assert_eq!(body, "Hello Alice!");
+    }
+
+    #[actix_web::test]
+    async fn test_echo() {
+        let mut app = test::init_service(App::new().service(echo)).await;
+        let req = test::TestRequest::post().uri("/echo").set_payload("Echo this!").to_request();
+        let resp = test::call_service(&mut app, req).await;
+        assert!(resp.status().is_success());
+        let body = test::read_body(resp).await;
+        assert_eq!(body, "Echo this!");
+    }
+}
